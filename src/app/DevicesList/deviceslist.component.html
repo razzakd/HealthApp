@@ -1,0 +1,24 @@
+<div>
+  <h1 class="text-center">
+    {{ title }}
+  </h1>
+</div>
+<div>{{errorMsg}}</div>
+<div class="container-fluid">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">MAC</th>
+        <th scope="col">IP</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let record of hostsData">
+        <td>{{record?.id}}</td>
+        <td>{{record?.mac}}</td>
+        <td>{{record?.ipAddresses}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
