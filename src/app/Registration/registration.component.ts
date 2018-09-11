@@ -76,7 +76,7 @@ export class RegistrationComponent {
         }]
     };
     this.registrationService.AddHostDeviceData(this.userData, fileName);
-    //this.registrationService.AddHostDevice(this.deviceData);
+    this.registrationService.AddHostDevice(this.deviceData);
     this.addMessage = 'Added';
   }
 }
