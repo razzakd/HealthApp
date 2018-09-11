@@ -20,9 +20,9 @@ export class AuthService implements HttpInterceptor {
     //return next.handle(authReq);
     req = req.clone({
       setHeaders: {
-        'Accept': 'application/json',
-        'Authorization': `Basic a2FyYWY6a2FyYWY=`,
-        'Access-Control-Allow-Origin': `*`,
+        'Accept': `application/json`,
+        'Authorization': `Basic b25vczpyb2Nrcw==`,
+        'Access-Control-Allow-Origin': `*`
       },
     });
     if (req.method == "OPTIONS") {
