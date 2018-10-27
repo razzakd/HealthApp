@@ -1,0 +1,78 @@
+﻿<form class="container-fluid col-12" #meterForm="ngForm">
+  <div class="col-6">
+    <h5>
+      {{ title }}!
+    </h5>
+  </div>
+  <div>{{errorMsg}}</div>
+  <div>
+    <div class="form-group">
+      <label for="bRate" class="col-2 control-label">Bandwidth (Kbps)</label>
+      <div class="col-2">
+        <input class="form-control" name="txtbRate" [(ngModel)]="bRate" required #txtbRate="ngModel" type="number">
+        <div *ngIf="txtbRate.invalid && (txtbRate.dirty || txtbRate.touched)" class="alert alert-danger">
+          Bandwidth is required.
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="lstSwitch" class="col-2 control-label">OF Switch</label>
+      <div class="col-2">
+        <select name="lstSwitch" [(ngModel)]="meters" class="form-control" required #lstSwitch="ngModel">
+          <option *ngFor="let device of deviceList" [value]="device.id">
+            S{{device.chassisId}} ({{device.id}})
+          </option>
+        </select>
+        <div *ngIf="lstSwitch.invalid && (lstSwitch.dirty || lstSwitch.touched)" class="alert alert-danger">
+          Please select a Switch.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-offset-2 col-6">
+      <button type="button" [disabled]="!meterForm.form.valid" class="btn btn-primary" (click)="addMeter();">
+        <span class="glyphicon glyphicon-plus"></span> Meter
+      </button>
+      {{addMessage}}
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-offset-2 col-6">
+      <button type="button" class="btn btn-primary" (click)="removeFlowsWithMeter();">
+        <span class="glyphicon glyphicon-trash"></span> Flows associated with Meters
+      </button>
+      {{removeFlowMessage}}
+    </div>
+  </div>
+  <div class="container-fluid">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Meter ID</th>
+          <th scope="col">Switch</th>
+          <th scope="col">Rate (Kbps)</th>
+          <th scope="col">Meter action</th>
+          <th scope="col">Installed By App</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let record of todos | async">
+          <tr>
+            <td>{{record?.id}}</td>
+            <td>{{record?.deviceId}}</td>
+            <td>{{record?.bands[0].rate}}</td>
+            <td>{{record?.bands[0].type}}</td>
+            <td>{{record?.appId}}</td>
+            <td>
+              <button type="button" class="btn btn-primary" (click)="removeMeter(record)">
+                <span class="glyphicon glyphicon-remove"></span>
+              </button>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</form>
