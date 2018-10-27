@@ -1,4 +1,4 @@
-# Prerequsite
+# Prerequisite
 - Nodejs 
 - Angular CLI
 - ONOS virtual VBox instance running and REST API endpoints configured. We also need to execute a python script in mininet to simulate the network environment for this project.
