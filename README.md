@@ -6,7 +6,7 @@
 # HealthApp
 This is an application to showcase the ability of end user development allowing network configration of SDN Network with ONOS controller. 
 
-# Isnstructions
+# Instructions
 
 - After downloading the source code go to the application Folder root
 - run ng serve
